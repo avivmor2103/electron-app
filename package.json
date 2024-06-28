@@ -1,0 +1,33 @@
+{
+  "name": "electron-app",
+  "version": "0.0.1",
+  "description": "Electron application",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev:watch": "npx electronmon --trace-warnings .",
+    "package-win": "electron-packager . YourAppName --platform=win32 --arch=x64 --out=dist --overwrite",
+    "electron:serve": "concurrently -k \"cross-env BROWSER=none npm run react-start\" \"npm run electron:start\"",
+    "electron:build": "npm run build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:start": "wait-on tcp:3000 && electron .",
+    "react-start": "cd electron-app && npm start",
+    "install-packages" : "npm install && cd electron-app && npm install"
+  },
+  "keywords": [
+    "electron",
+    "reactjs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^31.1.0",
+    "electron-builder": "^24.13.3",
+    "wait-on": "^7.2.0"
+  },
+  "devDependencies": {
+    "electron-packager": "^17.1.2"
+  }
+}
